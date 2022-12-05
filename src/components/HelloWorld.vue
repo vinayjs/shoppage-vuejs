@@ -1,7 +1,14 @@
 <template>
   <div>
-   <h1>{{product}}</h1> 
-   <p1>{{description}}</p1>
+  <div class="nav-bar"></div>
+  <div class="product-display">
+    <div class="product-image">
+      <img alt="product" src="./assets/socks_blue.jpg">
+    </div>
+    <div class="product-info">
+      <h1>{{product}}</h1>
+    </div>
+  </div>
   </div>
 </template>
 
@@ -10,7 +17,8 @@ export default {
   data(){
     return {
       product : 'Socks',
-      description : 'Made with pure cotton'
+      description : 'Made with pure cotton',
+      image: './components/assets/socks_blue.'
     }
   }
 
