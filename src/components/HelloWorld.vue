@@ -4,7 +4,8 @@
   <div class="cart">Cart{{cart}}</div>
   <div class="product-display">
     <div class="product-image">
-      <img alt="product" src="./assets/socks_blue.jpg">
+      <img v-if="changeImage" alt="product" src="../assets/socks_blue.jpg">
+      <img v-else alt="product" src="../assets/socks_green.jpg">
     </div>
     <div class="product-info">
       <h1>{{product}}</h1>
@@ -15,9 +16,9 @@
       <ul>
       <li v-for="detail in details" :key="detail">{{detail}}</li>
      </ul>
-     <div v-for="variant in variants" :key="variant.id" @mouseover="updateImage(variant.image)">{{variant.color}}</div>
+     <button v-for="variant in variants" :key="variant.id" @click="changeImage = !changeImage" class="color-circle" :style="{backgroundColor: variant.color}"></button>
      <div v-for="size in sizes" :key="size">{{size}}</div>
-     <button class="button" v-on:click="addToCart">Add to Cart</button>
+     <button class="button" :class="{disabledButton: !instock}"  v-on:click="addToCart">Add to Cart</button>
      <button class="button" @click="removeFromCart">Remove Item</button>
     </div>
   </div>
@@ -35,11 +36,13 @@ export default {
       onSale: 'true',
       details: ['80% pure cotton', '10% wool', '10% polyster'],
       variants: [
-        {id: 2234, color: 'green', image: './components/assets/socks_green.jpg'},
-        {id: 2235, color:'blue', image: './components/assets/socks_blue.jpg'}
+        {id: 2234, color: 'green', image: '../assets/socks_green.jpg'},
+        {id: 2235, color:'blue', image: '../assets/socks_blue.jpg'}
       ],
+      instock:true,
       sizes: ["S", "L", "XL"],
-      cart: 0
+      cart: 0,
+      changeImage: false
     }
   },
   methods: {
@@ -49,9 +52,7 @@ export default {
     removeFromCart(){
       this.cart -= 1;
     },
-    updateImage(variantImage){
-      this.image = variantImage
-    }
+
   }
 }
 </script>
