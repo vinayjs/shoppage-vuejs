@@ -1,6 +1,7 @@
 <template>
   <div>
   <div class="nav-bar"></div>
+  <div class="cart">Cart{{cart}}</div>
   <div class="product-display">
     <div class="product-image">
       <img alt="product" src="./assets/socks_blue.jpg">
@@ -14,8 +15,10 @@
       <ul>
       <li v-for="detail in details" :key="detail">{{detail}}</li>
      </ul>
-     <div v-for="variant in variants" :key="variant.id">{{variant.color}}</div>
+     <div v-for="variant in variants" :key="variant.id" @mouseover="updateImage(variant.image)">{{variant.color}}</div>
      <div v-for="size in sizes" :key="size">{{size}}</div>
+     <button class="button" v-on:click="addToCart">Add to Cart</button>
+     <button class="button" @click="removeFromCart">Remove Item</button>
     </div>
   </div>
   </div>
@@ -27,15 +30,27 @@ export default {
     return {
       product : 'Socks',
       description : 'Made with pure cotton',
-      image: './components/assets/socks_blue.',
+      image: './assets/socks_blue.jpg',
       inventory: 10,
       onSale: 'true',
       details: ['80% pure cotton', '10% wool', '10% polyster'],
       variants: [
-        {id: 2234, color: 'green'},
-        {id: 2235, color:'blue'}
+        {id: 2234, color: 'green', image: './components/assets/socks_green.jpg'},
+        {id: 2235, color:'blue', image: './components/assets/socks_blue.jpg'}
       ],
-      sizes: ["S", "L", "XL"]
+      sizes: ["S", "L", "XL"],
+      cart: 0
+    }
+  },
+  methods: {
+    addToCart(){
+      this.cart += 1;
+    },
+    removeFromCart(){
+      this.cart -= 1;
+    },
+    updateImage(variantImage){
+      this.image = variantImage
     }
   }
 }
