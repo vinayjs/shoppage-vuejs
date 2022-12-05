@@ -58,7 +58,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 body {
   background-color: #f2f2f2;
   margin: 0px;
