@@ -11,6 +11,11 @@
       <p v-else-if="(inventory <= 10 && inventory > 0)">Almost sold out</p>
       <p v-else>Sold Out</p>
       <p v-if="onSale">On Sale</p>
+      <ul>
+      <li v-for="detail in details" :key="detail">{{detail}}</li>
+     </ul>
+     <div v-for="variant in variants" :key="variant.id">{{variant.color}}</div>
+     <div v-for="size in sizes" :key="size">{{size}}</div>
     </div>
   </div>
   </div>
@@ -24,10 +29,15 @@ export default {
       description : 'Made with pure cotton',
       image: './components/assets/socks_blue.',
       inventory: 10,
-      onSale: 'true'
+      onSale: 'true',
+      details: ['80% pure cotton', '10% wool', '10% polyster'],
+      variants: [
+        {id: 2234, color: 'green'},
+        {id: 2235, color:'blue'}
+      ],
+      sizes: ["S", "L", "XL"]
     }
   }
-
 }
 </script>
 
