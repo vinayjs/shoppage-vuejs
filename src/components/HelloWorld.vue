@@ -7,6 +7,10 @@
     </div>
     <div class="product-info">
       <h1>{{product}}</h1>
+      <p v-if="(inventory > 10)">In Stock</p>
+      <p v-else-if="(inventory <= 10 && inventory > 0)">Almost sold out</p>
+      <p v-else>Sold Out</p>
+      <p v-if="onSale">On Sale</p>
     </div>
   </div>
   </div>
@@ -18,7 +22,9 @@ export default {
     return {
       product : 'Socks',
       description : 'Made with pure cotton',
-      image: './components/assets/socks_blue.'
+      image: './components/assets/socks_blue.',
+      inventory: 10,
+      onSale: 'true'
     }
   }
 
@@ -27,6 +33,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+body {
+  background-color: #f2f2f2;
+  margin: 0px;
+  font-family: tahoma;
+  color: #282828;
+}
 .button {
   margin: 30px;
   background-color: #39495c;
